@@ -1,0 +1,1 @@
+This plugin for reading statics and apply Udemy Course
