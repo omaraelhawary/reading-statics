@@ -8,21 +8,25 @@
     Author URI: https://www.linkedin.com/in/omaraelhawary/
 */
 
-function postsReadStatics(){
-    add_options_page(
-        'Posts Read Statics',
-        'Read Statics',
-        'manage_options',
-        'posts-read-statics',
-        'ourSettignsPageHTML'
-    );
+Class ReadingStatics{
+    function __construct(){
+        add_action('admin_menu', array($this, 'adminPage'));
+    }
+        function adminPage(){
+            add_options_page(
+                'Posts Read Statics',
+                'Read Statics',
+                'manage_options',
+                'posts-read-statics',
+                array($this, 'pluginSettingsHTML')
+            );
+        }
+        
+        function pluginSettingsHTML(){  ?>
+<div class="wrap">
+    <h1>Posts Read Statics Settings</h1>
+</div>
+<?php }
 }
 
-function ourSettignsPageHTML(){  ?>
-
-<h1>Posts Read Statics</h1>
-
-<?php    
-}
-
-add_action('admin_menu', 'postsReadStatics');
+$readingStatics = new ReadingStatics();
