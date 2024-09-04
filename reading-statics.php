@@ -25,17 +25,59 @@ Class ReadingStatics{
 
     function registerSettings(){
         add_settings_section( 'prsFirstSection', null, null, 'posts-read-statics-settings');
+        //Display Location
         add_settings_field('prs_location', 'Display Location', array($this, 'locationHTML'), 'posts-read-statics-settings', 'prsFirstSection');
         register_setting('postsReadStatics', 'prs_location', array(
             'sanitize_callback' => 'sanitize_text_field',
                 'default' => '0'
         ));
+        //Headline Text
+        add_settings_field('prs_headline', 'Headline Location', array($this, 'headlineHTML'), 'posts-read-statics-settings', 'prsFirstSection');
+        register_setting('postsReadStatics', 'prs_headline', array(
+            'sanitize_callback' => 'sanitize_text_field',
+                'default' => 'Post Statics'
+        ));
+
+        //Word Count
+        add_settings_field('prs_word_count', 'Word Count', array($this, 'checkboxHTML'), 'posts-read-statics-settings', 'prsFirstSection', array('theName' => 'prs_word_count'));
+        register_setting('postsReadStatics', 'prs_word_count', array(
+            'sanitize_callback' => 'sanitize_text_field',
+                'default' => '1'
+        ));
+
+        //Character Count
+        add_settings_field('prs_char_count', 'Character Count', array($this, 'checkboxHTML'), 'posts-read-statics-settings', 'prsFirstSection', array('theName' => 'prs_char_count'));
+        register_setting('postsReadStatics', 'prs_char_count', array(
+            'sanitize_callback' => 'sanitize_text_field',
+                'default' => '1'
+        ));
+
+         //Read Time
+         add_settings_field('prs_read_time', 'Read Time', array($this, 'checkboxHTML'), 'posts-read-statics-settings', 'prsFirstSection', array('theName' => 'prs_read_time'));
+         register_setting('postsReadStatics', 'prs_read_time', array(
+             'sanitize_callback' => 'sanitize_text_field',
+                 'default' => '1'
+         ));
+    }
+
+
+
+    function checkboxHTML($args){?>
+<input type="checkbox" name="<?php echo $args['theName'] ?>" value="1"
+    <?php checked( get_option($args['theName']), '1' ); ?>>
+<?php
+    }
+
+
+    function headlineHTML(){ ?>
+<input type=" text" name="prs_headline" value="<?php echo esc_attr( get_option('prs_headline') ) ?>">
+<?php
     }
 
     function locationHTML(){ ?>
 <select name="prs_location">
-    <option value="0">Beginning of post</option>
-    <option value="1">End of post</option>
+    <option value="0" <?php selected( get_option('prs_location'), '0'); ?>>Beginning of post</option>
+    <option value="1" <?php selected( get_option('prs_location'), '1'); ?>>End of post</option>
 </select>
 <?php   
     }
