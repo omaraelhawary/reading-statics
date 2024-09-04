@@ -28,7 +28,7 @@ Class ReadingStatics{
         //Display Location
         add_settings_field('prs_location', 'Display Location', array($this, 'locationHTML'), 'posts-read-statics-settings', 'prsFirstSection');
         register_setting('postsReadStatics', 'prs_location', array(
-            'sanitize_callback' => 'sanitize_text_field',
+            'sanitize_callback' => array($this, 'sanitizeLocation'),
                 'default' => '0'
         ));
         //Headline Text
@@ -60,7 +60,13 @@ Class ReadingStatics{
          ));
     }
 
-
+    function sanitizeLocation($input){
+        if($input != '0' && $input != '1'){
+            add_settings_error( 'prs_location', 'prs_location_error', 'Display Location must be Beginning of Post or End of Post');
+            return get_option('prs_location');
+        }
+        return $input;
+    }
 
     function checkboxHTML($args){?>
 <input type="checkbox" name="<?php echo $args['theName'] ?>" value="1"
