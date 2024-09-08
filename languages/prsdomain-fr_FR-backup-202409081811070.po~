@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Posts Read Statics\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-08 18:08+0000\n"
+"PO-Revision-Date: 2024-09-08 18:08+0000\n"
+"Last-Translator: Admin\n"
+"Language-Team: French (France)\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.11; wp-6.6.1\n"
+"X-Domain: prsdomain"
+
+#. Author URI of the plugin
+msgid "https://www.linkedin.com/in/omaraelhawary/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Omar ElHawary"
+msgstr ""
+
+#. Name of the plugin
+#: reading-statics.php:101
+msgid "Posts Read Statics"
+msgstr ""
+
+#. Description of the plugin
+msgid "This plugin to get read statics for posts."
+msgstr ""
+
+#: reading-statics.php:73
+msgid "This Post has"
+msgstr ""
+
+#: reading-statics.php:73
+msgid "words"
+msgstr ""
