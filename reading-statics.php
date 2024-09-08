@@ -6,6 +6,8 @@
     Version: 1.0
     Author: Omar ElHawary
     Author URI: https://www.linkedin.com/in/omaraelhawary/
+    Text Domain: prsdomain
+    Domain Path: /languages
 */
 
 Class ReadingStatics{
@@ -20,6 +22,19 @@ Class ReadingStatics{
         add_action('admin_menu', array($this, 'adminPage'));
         add_action('admin_init', array($this, 'registerSettings'));
         add_filter('the_content', array($this, 'readStatics'));
+        add_action( 'init', array($this, 'loadTextDomain'));
+    }
+
+    /**
+     * Loads the plugin's text domain.
+     *
+     * This function is used to load the plugin's text domain for translation purposes.
+     * It uses the load_plugin_textdomain function provided by WordPress.
+     *
+     * @return void
+     */
+    function loadTextDomain(){
+        load_plugin_textdomain( 'prsdomain', false, dirname(plugin_basename(__FILE__)) . '/languages' );
     }
 
     /**
@@ -55,7 +70,7 @@ Class ReadingStatics{
         }
 
         if(get_option('prs_word_count', '1')){
-            $html .= 'This Post has ' . $wordCount . ' words.<br>';
+            $html .= __('This Post has', 'prsdomain') . ' ' . $wordCount . ' ' . __('words', 'prsdomain').'.<br>';
         }
 
         if(get_option('prs_char_count', '1')){
@@ -83,7 +98,7 @@ Class ReadingStatics{
     function adminPage(){
         add_options_page(
             'Posts Read Statics',
-            'Read Statics',
+            __('Posts Read Statics', 'prsdomain'),
             'manage_options',
             'posts-read-statics-settings',
             array($this, 'pluginSettingsHTML')
